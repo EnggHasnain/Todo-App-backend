@@ -14,12 +14,8 @@ from app.routes.users import router as users_router
 
 
 # -------------------------------------------------
-# CORS
+# CORS (configured via CORS_ORIGINS env variable)
 # -------------------------------------------------
-CORS_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
 
 
 # -------------------------------------------------
@@ -55,7 +51,7 @@ app = FastAPI(
 # -------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=CORS_ORIGINS,
+    allow_origins=settings.cors_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
