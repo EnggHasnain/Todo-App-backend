@@ -10,16 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-<<<<<<< HEAD
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
-=======
-# Copy backend requirements and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
->>>>>>> 4297640e08a41f2a4ea33d638a487631dbc58dd4
 
 # Runtime stage
 FROM python:3.12-slim
