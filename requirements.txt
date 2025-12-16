@@ -12,6 +12,7 @@ asyncpg>=0.30.0
 # Authentication (Phase II)
 # WARNING: PyJWT MUST be pinned - 'jwt' package causes import collision
 PyJWT==2.8.0
+passlib[bcrypt]>=1.7.4
 email-validator>=2.1.0
 
 # Configuration & Environment
