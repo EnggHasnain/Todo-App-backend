@@ -16,6 +16,8 @@ from app.routes.users import router as users_router
 # -------------------------------------------------
 # CORS (configured via CORS_ORIGINS env variable)
 # -------------------------------------------------
+cors_origins = settings.cors_origins_list
+print(f"CORS Origins configured: {cors_origins}")
 
 
 # -------------------------------------------------
@@ -24,6 +26,7 @@ from app.routes.users import router as users_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print(f"Starting {settings.APP_NAME}...")
+    print(f"CORS Origins: {cors_origins}")
     try:
         await create_tables()
         print("Database ready")
@@ -51,9 +54,9 @@ app = FastAPI(
 # -------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
+    allow_origins=cors_origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allow_headers=["*"],
 )
 
